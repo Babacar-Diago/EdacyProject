@@ -1,0 +1,88 @@
+div .date {
+  float: left;
+}
+div .link {
+  float: right;
+}
+
+div .espace{
+  margin-bottom: 10px;
+}
+
+
+/***************/
+#pagin nav {
+  width: 60%;
+  margin: auto;
+  padding: 20px 0;
+  display: flex;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px
+}
+
+#pagin a {
+  color: #fff;
+  padding: 0px 8px;
+  text-decoration: none;
+}
+
+.active a,
+#pagin a:hover {
+  color: #ffcc5c !important;
+  border-bottom: 3px solid #ffcc5c;
+}
+
+span {
+  border-bottom: 3px solid transparent;
+}
+
+.prev,
+.next {
+  transition: all 600ms ease;
+}
+
+.prev:hover {
+  transition: all 600ms ease;
+  transform: translateX(-10px);
+  border-bottom: none !important;
+}
+
+.next:hover {
+  transition: all 600ms ease;
+  transform: translateX(10px);
+  border-bottom: none !important;
+}
+
+footer {
+  margin-top: 20px;
+  width: 380px;
+  font-size: 0.7em;
+  background: #afafaf;
+}
+
+footer section {
+  width: 80%;
+  margin: auto;
+  color: #fff;
+  padding: 8px;
+}
+
+.links {
+  color: #fff;
+}
+
+.links:hover {
+  color: #ffcc5c;
+}
+
+.copyright {
+  margin: auto;
+  border-top: 1px solid #fff;
+  padding-top: 8px;
+  text-align: center;
+}
