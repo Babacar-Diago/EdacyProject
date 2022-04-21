@@ -1,4 +1,4 @@
-# EdacyProject
+# EdacyProject (Branche Master)
 
 ## Développement d'un lecteur de flux RSS
 
