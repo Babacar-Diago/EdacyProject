@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from "../../environments/environment";
 import {Items} from "../models/items";
 import {Observable} from "rxjs";
+import {Channel} from "../models/channel";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class RssService {
   }
 
   // mise a jour d'un produit
-  updateItem(item: Items): Observable<Items>{
-    return this.httpClient.patch<Items>(this.host+"/edititem", item);
+  updateItem(item: Items, itemId:number): Observable<Items>{
+    return this.httpClient.patch<Items>(this.host+"/edititem/"+itemId, item);
   }
 }

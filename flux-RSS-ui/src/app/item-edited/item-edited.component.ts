@@ -12,7 +12,7 @@ import {Items} from "../models/items";
 export class ItemEditedComponent implements OnInit {
 
   itemId: number;
-  item: any;
+  item: any=null;
 
   constructor(private activatedRoute: ActivatedRoute,
               private rssService: RssService,

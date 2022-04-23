@@ -20,8 +20,12 @@ public interface ReadRssService {
 
     public Channel getLastRss();
 
-    public Items getItemById(int id);
+    public Items getItemById(Long id);
 
     public void saveItem(Items item);
+
+    public Channel getChannelByItemId(Long id);
+
+
 
 }

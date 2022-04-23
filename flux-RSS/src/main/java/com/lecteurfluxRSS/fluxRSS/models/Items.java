@@ -9,7 +9,7 @@ public class Items {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
     private String pubDate;
     @Column(length = 1024)
@@ -23,7 +23,7 @@ public class Items {
     @JoinColumn(name = "id_chanel",nullable = true)
     private Channel channel;
 
-    public Items(int id, String title, String pubDate, String description, String link, Media media, Channel channel) {
+    public Items(Long id, String title, String pubDate, String description, String link, Media media, Channel channel) {
         this.id = id;
         this.title = title;
         this.pubDate = pubDate;
@@ -76,11 +76,11 @@ public class Items {
         this.media = media;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

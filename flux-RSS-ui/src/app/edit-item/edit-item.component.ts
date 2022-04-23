@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {RssService} from "../services/rss.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Items} from "../models/items";
 
 @Component({
   selector: 'app-edit-item',
@@ -27,9 +26,7 @@ export class EditItemComponent implements OnInit {
         this.itemFormGroup=this.fb.group({
           id:[item.id, Validators.required],
           title:[item.title, Validators.required],
-          pubDate:[item.pubDate, Validators.required],
           description:[item.description, Validators.required],
-          link:[item.link, Validators.required],
         })
       });
   }
@@ -39,8 +36,9 @@ export class EditItemComponent implements OnInit {
   }
 
   onUpdateItem() {
-    this.rssService.updateItem(this.itemFormGroup?.value)
+    this.rssService.updateItem(this.itemFormGroup?.value, this.itemId)
       .subscribe(data =>{
+        console.log(data)
         alert("Success Item update");
         this.redirect(this.itemId);
       });

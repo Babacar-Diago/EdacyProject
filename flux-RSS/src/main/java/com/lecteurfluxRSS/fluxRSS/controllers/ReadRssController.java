@@ -27,18 +27,17 @@ public class ReadRssController {
         return readRssService.getLastRss();
     }
 
-    @PatchMapping(value = "edititem")
-    public void editTitle(@RequestBody Items item){
-        item.setChannel(item.getChannel());
+    @PatchMapping(value = "edititem/{id}")
+    public void editItem(@RequestBody Items item, @PathVariable Long id){
+        item.setChannel(readRssService.getChannelByItemId(id));
         item.setTitle(item.getTitle());
         item.setDescription(item.getDescription());
         readRssService.saveItem(item);
     }
 
     @GetMapping(value = "/item/{id}")
-    public Items getItem(@PathVariable int id){
+    public Items getItem(@PathVariable Long id){
         return readRssService.getItemById(id);
     }
-
 
 }

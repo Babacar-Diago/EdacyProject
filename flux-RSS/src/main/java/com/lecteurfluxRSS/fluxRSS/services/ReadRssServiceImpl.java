@@ -151,16 +151,19 @@ public class ReadRssServiceImpl implements ReadRssService{
         return channelRepository.getLastRss();
     }
 
+    @Override
+    public Items getItemById(Long id) {
+        return itemRepository.findById(id).get();
+    }
 
     @Override
-    public Items getItemById(int id) {
-        return itemRepository.findById(id).get();
+    public Channel getChannelByItemId(Long id) {
+        return itemRepository.findById(id).get().getChannel();
     }
 
     @Override
     public void saveItem(Items item) {
         itemRepository.save(item);
     }
-
 
 }
