@@ -9,7 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FluxRssApplication /*implements CommandLineRunner*/ {
+public class FluxRssApplication implements CommandLineRunner {
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(FluxRssApplication.class, args);
@@ -24,18 +25,17 @@ public class FluxRssApplication /*implements CommandLineRunner*/ {
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 
-	}
+	}*/
+
+	@Autowired
+	ReadRssServiceImpl readRssService;
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		// load course from XMLService
-		Channel course = readRssService.parseChannel();
-
-		// print course details
-		System.out.println(course);
+		readRssService.saveRss();
 
 	}
-*/
+
 
 }

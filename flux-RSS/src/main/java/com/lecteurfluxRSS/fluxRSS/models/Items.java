@@ -1,22 +1,36 @@
 package com.lecteurfluxRSS.fluxRSS.models;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+
+@Entity
 public class Items {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String pubDate;
+    @Column(length = 1024)
     private String description;
+    @Column(length = 1024)
     private String link;
+    @OneToOne
     private Media media;
+    @JsonIgnoreProperties("items")
+    @ManyToOne
+    @JoinColumn(name = "id_chanel",nullable = true)
+    private Channel channel;
 
-    public Items(int id, String title, String pubDate, String description, String link) {
+    public Items(int id, String title, String pubDate, String description, String link, Media media, Channel channel) {
         this.id = id;
         this.title = title;
         this.pubDate = pubDate;
         this.description = description;
         this.link = link;
+        this.media = media;
+        this.channel = channel;
     }
 
     public Items() {
@@ -68,6 +82,14 @@ public class Items {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 
     @Override

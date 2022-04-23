@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RssService} from "../services/rss.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Items} from "../models/items";
 
 @Component({
   selector: 'app-edit-item',
@@ -10,17 +11,39 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class EditItemComponent implements OnInit {
 
-  itemId: number | undefined;
-  productFormGroup?: FormGroup;
+  itemId: number;
+  itemFormGroup?: FormGroup;
 
   constructor(private activatedRoute: ActivatedRoute,
               private rssService: RssService,
-              private fb: FormBuilder) {
-    //this.itemId=activatedRoute.snapshot.params.id;
+              private fb: FormBuilder,
+              private router: Router) {
+    this.itemId= activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
+    this.rssService.getItem(this.itemId)
+      .subscribe(item => {
+        this.itemFormGroup=this.fb.group({
+          id:[item.id, Validators.required],
+          title:[item.title, Validators.required],
+          pubDate:[item.pubDate, Validators.required],
+          description:[item.description, Validators.required],
+          link:[item.link, Validators.required],
+        })
+      });
+  }
 
+  redirect(id:any){
+    this.router.navigateByUrl("/itemEdited/"+id);
+  }
+
+  onUpdateItem() {
+    this.rssService.updateItem(this.itemFormGroup?.value)
+      .subscribe(data =>{
+        alert("Success Item update");
+        this.redirect(this.itemId);
+      });
   }
 
 }

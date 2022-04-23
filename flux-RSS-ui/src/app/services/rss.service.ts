@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from "../../environments/environment";
 import {Items} from "../models/items";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,18 @@ export class RssService {
     return this.httpClient.get(this.host + '/rss');
   }
 
-  editItem(item:Items, title:string, description:string){
-    return this.httpClient.put(this.host+'/edititem', item);
+  // Methode qui permet de récupérer le flux rss
+  getFluxSaved() {
+    return this.httpClient.get(this.host + '/rss/all');
   }
 
+  getItem(id: number): Observable<Items> {
+    // @ts-ignore
+    return this.httpClient.get(this.host + '/item/'+id);
+  }
+
+  // mise a jour d'un produit
+  updateItem(item: Items): Observable<Items>{
+    return this.httpClient.patch<Items>(this.host+"/edititem", item);
+  }
 }

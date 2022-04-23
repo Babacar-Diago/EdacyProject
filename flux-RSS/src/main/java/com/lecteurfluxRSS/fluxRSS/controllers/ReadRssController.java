@@ -18,19 +18,27 @@ public class ReadRssController {
     ReadRssServiceImpl readRssService;
 
     @GetMapping(value = "/rss", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Channel readRss() {
+    public Channel readRss() throws FeedException, IOException {
         return readRssService.readRss();
     }
 
-    /*@PutMapping(value = "edititem")
-    public void editTitle(@RequestBody Items item, String title, String description){
-        readRssService.modifierItem(item, title, description);
-    }*/
+    @GetMapping(value = "rss/all")
+    public Channel getChannel(){
+        return readRssService.getLastRss();
+    }
 
-    /*@GetMapping(value = "/item/{id}")
+    @PatchMapping(value = "edititem")
+    public void editTitle(@RequestBody Items item){
+        item.setChannel(item.getChannel());
+        item.setTitle(item.getTitle());
+        item.setDescription(item.getDescription());
+        readRssService.saveItem(item);
+    }
+
+    @GetMapping(value = "/item/{id}")
     public Items getItem(@PathVariable int id){
         return readRssService.getItemById(id);
-    }*/
+    }
 
 
 }

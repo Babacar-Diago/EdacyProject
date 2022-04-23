@@ -4,5 +4,4 @@ export interface Items {
   pubDate : string;
   description : string;
   link : string;
-  media : string;
 }

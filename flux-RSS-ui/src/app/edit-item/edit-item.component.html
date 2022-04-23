@@ -1,1 +1,27 @@
-<p>edit-item works!</p>
+<div class="container" *ngIf="itemFormGroup">
+  <form [formGroup]="itemFormGroup" style="margin-top: 20px">
+    <div class="form-group" [hidden]="true">
+      <label>ID</label>
+      <input type="text" class="form-control" formControlName="id">
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" formControlName="title">
+    </div>
+    <div class="form-group" [hidden]="true">
+      <label>pubDate</label>
+      <input type="text" class="form-control" formControlName="pubDate">
+    </div>
+    <div class="form-group">
+      <label>description</label>
+      <input type="textarea" class="form-control" formControlName="description">
+    </div>
+    <div class="form-group" [hidden]="true">
+      <label>link</label>
+      <input type="textarea" class="form-control" formControlName="link">
+    </div>
+    <br>
+    <button class="btn btn-success" (click)="onUpdateItem()">Sauvegarder</button>
+  </form>
+</div>
+

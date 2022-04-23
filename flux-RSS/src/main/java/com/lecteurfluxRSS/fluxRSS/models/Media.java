@@ -1,10 +1,20 @@
 package com.lecteurfluxRSS.fluxRSS.models;
 
+import javax.persistence.*;
+
+@Entity
 public class Media {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+    @Column(length = 1024)
     private String content;
+    @Column(length = 1024)
     private String description;
     private String credit;
+    @OneToOne
+    private Items item;
 
     public Media() {
     }
